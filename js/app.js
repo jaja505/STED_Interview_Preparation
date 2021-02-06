@@ -110,9 +110,6 @@ function shwoSolution() {
         seconds = 59;
       } else {
         clearInterval(timerFunck);
-        if (autoNextButton.classList.contains("on")) {
-          startSycle();
-        }
       }
     } else {
       seconds--;
@@ -151,7 +148,8 @@ function startSycle() {
             if (solution !== "") {
               shwoSolution();
             }
-          } else if (autoNextButton.classList.contains("on")) {
+          }
+          if (autoNextButton.classList.contains("on")) {
             startSycle();
           }
         }
