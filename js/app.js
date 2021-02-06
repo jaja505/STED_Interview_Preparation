@@ -21,6 +21,7 @@ const nextButton = document.querySelector("#next-question");
 const autoNextButton = document.querySelector("#auto-next");
 const autoSolutionButton = document.querySelector("#auto-solution");
 
+let timerFunck;
 let questions = [];
 let question;
 let solution;
@@ -103,7 +104,7 @@ function shwoSolution() {
   questionWebElement.innerHTML = solution;
   minutes = time - 1;
   seconds = 60;
-  let timerFunck = setInterval(() => {
+  timerFunck = setInterval(() => {
     if (seconds === 0) {
       if (minutes > 0) {
         minutes--;
@@ -137,7 +138,7 @@ function startSycle() {
     questionWebElement.innerHTML = question;
     minutes = time - 1;
     seconds = 60;
-    let timerFunck = setInterval(() => {
+    timerFunck = setInterval(() => {
       if (seconds === 0) {
         if (minutes > 0) {
           minutes--;
