@@ -94,18 +94,42 @@
         </form>
       </div>
       <div class="game-container">
-        <div id="timer-container">
-          <span id="timer">12:33</span>
+        <div class="status-container">
+          <div class="status-item">
+            <span id="questions-left-message"></span>
+          </div>
+          <div id="timer-container" class="status-item">
+            <span id="timer-clock"></span>
+          </div>
+          <div class="status-item">
+            <span id="solutin-avaliable-message"></span>
+          </div>
         </div>
-        <span id="question"
-          >Lorem ipsum dolor sit amet, consectetur adipisicing elit. Incidunt
-          labore voluptatibus provident obcaecati. Et, perferendis reiciendis
-          laboriosam accusamus, exercitationem laborum est vel voluptatum
-          perspiciatis, ullam architecto! Repudiandae facere eum nisi!</span
-        >
+
+        <span id="question"></span>
         <div id="button-container">
           <button id="show-solution" class="q-button">Solution</button>
-          <button id="next=question" class="q-button">Next</button>
+          <button id="next-question" class="q-button">Next</button>
+          <div class="switch-container">
+            <span class="switch-item">
+              <img
+                src="../img/switch_off.gif"
+                alt=""
+                id="auto-next"
+                class="switch-button"
+              />
+              <p>Auto next</p>
+            </span>
+            <span class="switch-item">
+              <img
+                src="../img/switch_off.gif"
+                alt=""
+                id="auto-solution"
+                class="switch-button"
+              />
+              <p>Auto solution</p>
+            </span>
+          </div>
         </div>
       </div>
     </div>
