@@ -152,7 +152,8 @@ function startSycle() {
             if (solution !== "") {
               shwoSolution();
             }
-          } else if (autoNextButton.classList.contains("on")) {
+          }
+          if (autoNextButton.classList.contains("on")) {
             startSycle();
           }
         }
