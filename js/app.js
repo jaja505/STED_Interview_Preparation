@@ -46,7 +46,7 @@ function goHandler(e) {
 }
 
 function solutionButtonHandler() {
-  clearInterval(timerFunck);
+  clearInterval();
   timerWebElement.innerHTML = "00:00";
   if (solution !== "") {
     hasSolutionWebElement.innerHTML = "Solution:";
@@ -58,7 +58,7 @@ function solutionButtonHandler() {
 }
 
 function nextButtonHandler() {
-  clearInterval(timerFunck);
+  clearInterval();
   startSycle();
 }
 
@@ -104,13 +104,13 @@ function shwoSolution() {
   questionWebElement.innerHTML = solution;
   minutes = time - 1;
   seconds = 60;
-  timerFunck = setInterval(() => {
+  setInterval(() => {
     if (seconds === 0) {
       if (minutes > 0) {
         minutes--;
         seconds = 59;
       } else {
-        clearInterval(timerFunck);
+        clearInterval();
       }
     } else {
       seconds--;
@@ -138,13 +138,13 @@ function startSycle() {
     questionWebElement.innerHTML = question;
     minutes = time - 1;
     seconds = 60;
-    timerFunck = setInterval(() => {
+    setInterval(() => {
       if (seconds === 0) {
         if (minutes > 0) {
           minutes--;
           seconds = 59;
         } else {
-          clearInterval(timerFunck);
+          clearInterval();
           if (autoSolutionButton.classList.contains("on")) {
             if (solution !== "") {
               shwoSolution();
