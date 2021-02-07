@@ -90,19 +90,19 @@ function someChecked() {
 
 function prepareQuestions() {
   if (javaCh.checked) {
-    questions = [...JAVA];
+    questions = [...questions, JAVA];
   }
   if (javaTeckCh.checked) {
-    questions = [...TECHNICKAL];
+    questions = [...questions, TECHNICKAL];
   }
   if (selenCh.checked) {
-    questions = [...SELENIUM];
+    questions = [...questions, SELENIUM];
   }
   if (gitCh.checked) {
-    questions = [...GITHUB];
+    questions = [...questions, GITHUB];
   }
   if (jiraCh.checked) {
-    questions = [...JIRA];
+    questions = [...questions, JIRA];
   }
   if (timerCh.checked) {
     isTimerEnabled = true;
