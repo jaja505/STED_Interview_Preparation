@@ -4,7 +4,7 @@ Mobile app url: https://sobirjon001.github.io/interviewNinga/
 
 Hello anybody learning to become an SDET *(Software Development Engineer in Test or Software Design Engineer in Test).*
 
-I'm working on web based application which will help you to practice interview questions as in individual and group play.
+This is web based application which will help you to practice interview questions as in individual and group play.
 As of right now it's in very raw state. Currently it's best played from phone. Desktop version will be developed later.
 If you follow along you will see how new modules will be added up. Please check out Project section to see Kanban board.
 
