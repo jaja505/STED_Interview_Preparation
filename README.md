@@ -1,6 +1,6 @@
-# interviewNinga
+# interview Ninja
 
-Mobile app url: https://sobirjon001.github.io/interviewNinga/
+Mobile app url: https://sobirjon001.github.io/interviewNinja/
 
 Hello everybody learning to become an SDET *(Software Development Engineer in Test or Software Design Engineer in Test).*
 
