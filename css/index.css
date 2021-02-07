@@ -114,23 +114,8 @@ nav {
   pointer-events: none;
   transition: all 0.3 ease;
 }
-.stick-container {
-  width: 20vw;
-  height: 8vh;
+#go-menue {
+  width: 30px;
+  height: auto;
   margin: auto;
-  float: right;
-  display: flex;
-  cursor: pointer;
-}
-.stick-box {
-  margin: auto;
-  display: flex;
-}
-.stick {
-  width: 3px;
-  height: 30px;
-  background-color: black;
-  margin: 5px 3px;
-  pointer-events: none;
-  transition: all 0.3 ease;
 }

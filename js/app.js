@@ -22,6 +22,7 @@ const nextButton = document.querySelector("#next-question");
 const switchContainer = document.querySelector(".switch-container");
 const autoNextButton = document.querySelector("#auto-next");
 const autoSolutionButton = document.querySelector("#auto-solution");
+const goMenueCaller = document.querySelector("#go-menue");
 
 let isTimerEnabled = false;
 let intervalID = null;
@@ -35,6 +36,7 @@ solutionButton.addEventListener("click", solutionButtonHandler);
 nextButton.addEventListener("click", nextButtonHandler);
 autoNextButton.addEventListener("click", autoButtonHendler);
 autoSolutionButton.addEventListener("click", autoButtonHendler);
+goMenueCaller.addEventListener("click", goMenueHandler);
 
 function goHandler(e) {
   e.preventDefault();
@@ -175,6 +177,16 @@ function startSycle() {
 
 function startGame() {
   gsap.to(".menue-container", 1, { y: "-120%", ease: "elastic.in" });
+  goMenueCaller.classList.remove("hidden");
   prepareQuestions();
   startSycle();
+}
+
+function goMenueHandler() {
+  clearInterval(intervalID);
+  isTimerEnabled = false;
+  intervalID = null;
+  questions = [];
+  goMenueCaller.classList.add("hidden");
+  gsap.to(".menue-container", 1, { y: 0, ease: "elastic.out" });
 }
