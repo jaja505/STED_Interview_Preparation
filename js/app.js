@@ -52,7 +52,7 @@ function solutionButtonHandler() {
     clearInterval(intervalID);
     intervalID = null;
   }
-  timerWebElement.innerHTML = "--:--";
+  timerWebElement.innerHTML = "off";
   if (solution !== "") {
     hasSolutionWebElement.innerHTML = "Solution:";
     questionWebElement.innerHTML = solution;
@@ -167,10 +167,10 @@ function startSycle() {
     if (isTimerEnabled) {
       timerupdater("from question");
     } else {
-      timerWebElement.innerHTML = "--:--";
+      timerWebElement.innerHTML = "off";
     }
   } else {
-    timerWebElement.innerHTML = "--:--";
+    timerWebElement.innerHTML = "END";
     questionWebElement.innerHTML = "All questions are done!";
   }
 }
