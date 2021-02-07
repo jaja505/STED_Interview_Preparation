@@ -144,7 +144,7 @@ function timerupdater(from) {
         }
       }
     }
-    timerWebElement.innerHTML = "" + minutes + (tick ? ":" : " ") + seconds;
+    timerWebElement.innerHTML = "" + minutes + (tick ? ":" : " ") + (seconds < 10 ? "0" : "") + seconds;
     tick = !tick;
   }, 1000);
 }
