@@ -104,7 +104,7 @@ function prepareQuestions() {
   }
   if (timerCh.checked) {
     isTimerEnabled = true;
-    //switchContainer.classList.remove("hidden");
+    switchContainer.classList.remove("hidden");
   } else {
     isTimerEnabled = false;
     switchContainer.classList.add("hidden");
