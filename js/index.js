@@ -10,7 +10,9 @@ function navMovement() {
   navLinks.forEach((link, index) => {
     if (link.style.animation) {
       link.style.animation = "";
+      nav.classList.add("hidden");
     } else {
+      nav.classList.remove("hidden");
       link.style.animation = `navLinkFade 0.5s ease forwards ${
         index / 7 + 0.5
       }s`;

@@ -139,7 +139,7 @@ const JAVA = [
     t: 2,
   },
   {
-    q: " What is 508 testing?",
+    q: "What is 508 testing?",
     s: "",
     t: 2,
   },
@@ -178,11 +178,6 @@ const JAVA = [
     q: "What are Wrapper classes?",
     s:
       "Wrapper classes are object representations of primitive datatypes. These classes are needed to be able to store primitive like data in collections such as ArrayList. These wrapper classes also have useful utility methods.",
-    t: 2,
-  },
-  {
-    q: "",
-    s: "",
     t: 2,
   },
 ];

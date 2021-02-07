@@ -1,3 +1,4 @@
+const menueContainer = document.querySelector(".menue-container");
 const javaCh = document.querySelector("#java");
 const javaTeckCh = document.querySelector("#technickal");
 const selenCh = document.querySelector("#selenium");
@@ -18,17 +19,16 @@ const hasSolutionWebElement = document.querySelector(
 const questionWebElement = document.querySelector("#question");
 const solutionButton = document.querySelector("#show-solution");
 const nextButton = document.querySelector("#next-question");
+const switchContainer = document.querySelector(".switch-container");
 const autoNextButton = document.querySelector("#auto-next");
 const autoSolutionButton = document.querySelector("#auto-solution");
 
-let timerFunck;
+let isTimerEnabled = false;
+let intervalID = null;
 let questions = [];
 let question;
 let solution;
 let time;
-let minutes;
-let seconds;
-let tick = true;
 
 goBt.addEventListener("click", goHandler);
 solutionButton.addEventListener("click", solutionButtonHandler);
@@ -46,8 +46,11 @@ function goHandler(e) {
 }
 
 function solutionButtonHandler() {
-  clearInterval(timerFunck);
-  timerWebElement.innerHTML = "00:00";
+  if (intervalID) {
+    clearInterval(intervalID);
+    intervalID = null;
+  }
+  timerWebElement.innerHTML = "--:--";
   if (solution !== "") {
     hasSolutionWebElement.innerHTML = "Solution:";
     questionWebElement.innerHTML = solution;
@@ -58,7 +61,10 @@ function solutionButtonHandler() {
 }
 
 function nextButtonHandler() {
-  clearInterval(timerFunck);
+  if (intervalID) {
+    clearInterval(intervalID);
+    intervalID = null;
+  }
   startSycle();
 }
 
@@ -82,7 +88,6 @@ function someChecked() {
 
 function prepareQuestions() {
   if (javaCh.checked) {
-    console.log("java checked");
     questions = [...JAVA];
   }
   if (javaTeckCh.checked) {
@@ -97,26 +102,45 @@ function prepareQuestions() {
   if (jiraCh.checked) {
     questions = [...JIRA];
   }
+  if (timerCh.checked) {
+    isTimerEnabled = true;
+    //switchContainer.classList.remove("hidden");
+  } else {
+    isTimerEnabled = false;
+    switchContainer.classList.add("hidden");
+  }
 }
 
 function shwoSolution() {
   hasSolutionWebElement.innerHTML = "Solution:";
   questionWebElement.innerHTML = solution;
-  minutes = time - 1;
-  seconds = 60;
-  timerFunck = setInterval(() => {
-    if (seconds === 0) {
+  timerupdater("from solution");
+}
+
+function timerupdater(from) {
+  let minutes = time - 1;
+  let seconds = 60;
+  let tick = true;
+  intervalID = setInterval(() => {
+    if (seconds > 0) {
+      seconds--;
+    } else {
       if (minutes > 0) {
         minutes--;
         seconds = 59;
       } else {
-        clearInterval(timerFunck);
-        if (autoNextButton.classList.contains("on")) {
+        clearInterval(intervalID);
+        intervalID = null;
+        if (
+          from === "from question" &&
+          autoSolutionButton.classList.contains("on") &&
+          solution !== ""
+        ) {
+          shwoSolution();
+        } else if (autoNextButton.classList.contains("on")) {
           startSycle();
         }
       }
-    } else {
-      seconds--;
     }
     timerWebElement.innerHTML = "" + minutes + (tick ? ":" : ".") + seconds;
     tick = !tick;
@@ -125,7 +149,6 @@ function shwoSolution() {
 
 function startSycle() {
   if (questions.length !== 0) {
-    console.log("step");
     let randomIdex = Math.floor(Math.random() * questions.length);
     question = questions[randomIdex].q;
     solution = questions[randomIdex].s;
@@ -139,30 +162,11 @@ function startSycle() {
     questionsLeftWebElement.innerHTML = questionsLeft;
     hasSolutionWebElement.innerHTML = hasSolution;
     questionWebElement.innerHTML = question;
-    minutes = time - 1;
-    seconds = 60;
-    timerFunck = setInterval(() => {
-      if (seconds === 0) {
-        if (minutes > 0) {
-          minutes--;
-          seconds = 59;
-        } else {
-          clearInterval(timerFunck);
-          if (autoSolutionButton.classList.contains("on")) {
-            if (solution !== "") {
-              shwoSolution();
-            }
-          }
-          if (autoNextButton.classList.contains("on")) {
-            startSycle();
-          }
-        }
-      } else {
-        seconds--;
-      }
-      timerWebElement.innerHTML = "" + minutes + (tick ? ":" : ".") + seconds;
-      tick = !tick;
-    }, 1000);
+    if (isTimerEnabled) {
+      timerupdater("from question");
+    } else {
+      timerWebElement.innerHTML = "--:--";
+    }
   } else {
     timerWebElement.innerHTML = "--:--";
     questionWebElement.innerHTML = "All questions are done!";

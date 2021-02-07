@@ -5,19 +5,21 @@
   margin: 0px;
   padding: 0px;
   box-sizing: border-box;
-  overflow-y: hidden;
-  overflow-x: hidden;
+  overflow: hidden;
 }
-
 header {
   width: 100vw;
   height: 8vh;
   background-color: rgb(195, 224, 224);
 }
-
+.nav-container {
+  width: 90vw;
+  height: 100%;
+  margin: auto;
+}
 .logo-container {
   position: relative;
-  width: 60vw;
+  width: 50vw;
   height: 8vh;
   padding: 0px 20px;
   float: left;
@@ -79,6 +81,9 @@ nav {
   opacity: 1;
   z-index: 5;
 }
+.hidden {
+  display: none !important;
+}
 @keyframes navLinkFade {
   from {
     opacity: 0;
@@ -90,7 +95,7 @@ nav {
   }
 }
 .burger-container {
-  width: 30vw;
+  width: 20vw;
   height: 8vh;
   margin: auto;
   float: right;
@@ -106,6 +111,26 @@ nav {
   height: 3px;
   background-color: black;
   margin: 5px;
+  pointer-events: none;
+  transition: all 0.3 ease;
+}
+.stick-container {
+  width: 20vw;
+  height: 8vh;
+  margin: auto;
+  float: right;
+  display: flex;
+  cursor: pointer;
+}
+.stick-box {
+  margin: auto;
+  display: flex;
+}
+.stick {
+  width: 3px;
+  height: 30px;
+  background-color: black;
+  margin: 5px 3px;
   pointer-events: none;
   transition: all 0.3 ease;
 }
