@@ -1,4 +1,4 @@
-@import url("../font/digital-7/stylesheet.css");
+@import url("../font/digital/stylesheet.css");
 @import url("../font/Poppins/stylesheet.css");
 
 .section {
@@ -87,7 +87,7 @@ input {
   margin: auto;
 }
 #timer-container {
-  font-size: 50px;
+  font-size: 30px;
   font-family: digital;
   color: red;
   display: flex;
