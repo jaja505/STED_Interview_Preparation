@@ -59,8 +59,8 @@
               Java (general)
             </label>
             <label for="technickal">
-              <input type="checkbox" id="technickal" />
-              Java (technickal)
+              <input type="checkbox" id="technical" />
+              Java (technical)
             </label>
             <label for="selenium">
               <input type="checkbox" id="selenium" />
@@ -88,8 +88,8 @@
               <input type="checkbox" id="timer" />
               Enable timer
             </label>
-            <label for="video">
-              <input type="checkbox" id="video" />
+            <label for="videoCh">
+              <input type="checkbox" id="videoCh" />
               Video recording
             </label>
           </fieldset>
@@ -108,7 +108,6 @@
             <span id="solutin-avaliable-message"></span>
           </div>
         </div>
-
         <span id="question"></span>
         <div id="button-container">
           <button id="show-solution" class="q-button">Solution</button>
@@ -132,6 +131,62 @@
               />
               <p>Auto solution</p>
             </span>
+          </div>
+        </div>
+        <div id="video-container">
+          <video
+            id="video"
+            poster="../img/persone.gif"
+            class="disayeble"
+          ></video>
+          <div id="video-controll-container">
+            <div id="video-buttons">
+              <img src="../img/Power.png" class="video-button" id="video-on" />
+              <img
+                src="../img/Rec.png"
+                class="video-button disayeble"
+                id="video-record"
+              />
+              <img
+                src="../img/Play.png"
+                class="video-button disayeble"
+                id="video-play"
+              />
+              <img
+                src="../img/pause.png"
+                class="video-button disayeble"
+                id="video-pause"
+              />
+              <img
+                src="../img/Download.png"
+                class="video-button disayeble"
+                id="video-download"
+                download="test.webm"
+              />
+              <img
+                src="../img/fullScreen.png"
+                class="video-button disayeble"
+                id="video-fullScreen"
+              />
+            </div>
+            <div id="video-switch-container" class="disayeble">
+              <span class="switch-item">
+                <img
+                  src="../img/switch_off.gif"
+                  class="switch-button"
+                  id="auto-record"
+                />
+                <p>Auto record</p>
+              </span>
+              <span class="switch-item">
+                <img
+                  src="../img/switch_off.gif"
+                  class="switch-button"
+                  id="auto-play"
+                />
+                <p>Auto play</p>
+              </span>
+            </div>
           </div>
         </div>
       </div>

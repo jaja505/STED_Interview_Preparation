@@ -1,12 +1,13 @@
+// finding WebElements
 const menueContainer = document.querySelector(".menue-container");
 const javaCh = document.querySelector("#java");
-const javaTeckCh = document.querySelector("#technickal");
+const javaTeckCh = document.querySelector("#technical");
 const selenCh = document.querySelector("#selenium");
 const gitCh = document.querySelector("#github");
 const behavCh = document.querySelector("#behavioral");
 const jiraCh = document.querySelector("#jira");
 const timerCh = document.querySelector("#timer");
-const videoCh = document.querySelector("#video");
+const videoCh = document.querySelector("#videoCh");
 const goBt = document.querySelector("#go");
 const alertMsg = document.querySelector(".alert");
 const questionsLeftWebElement = document.querySelector(
@@ -23,27 +24,95 @@ const switchContainer = document.querySelector(".switch-container");
 const autoNextButton = document.querySelector("#auto-next");
 const autoSolutionButton = document.querySelector("#auto-solution");
 const goMenueCaller = document.querySelector("#go-menue");
-
+const videoContainer = document.querySelector("#video-container");
+const autoRecordButton = document.querySelector("#auto-record");
+const autoPlayButton = document.querySelector("#auto-play");
+const disaebleWebElemets = document.querySelectorAll(".disayeble");
+const videoPowerButton = document.querySelector("#video-on");
+const videoRecordButton = document.querySelector("#video-record");
+const videoPlayButton = document.querySelector("#video-play");
+const videoPauseButton = document.querySelector("#video-pause");
+const videoDownloadButton = document.querySelector("#video-download");
+const videoFullScreenButton = document.querySelector("#video-fullScreen");
+const video = document.querySelector("#video");
+// global variables
 let isTimerEnabled = false;
+let isVideoEnabled = false;
+let isRecording = false;
 let intervalID = null;
 let questions = [];
 let question;
 let solution;
 let time;
-
+let camera_stream = null;
+let media_recorder = null;
+let blobs_recorded = [];
+// event listeners
 goBt.addEventListener("click", goHandler);
 solutionButton.addEventListener("click", solutionButtonHandler);
 nextButton.addEventListener("click", nextButtonHandler);
 autoNextButton.addEventListener("click", autoButtonHendler);
 autoSolutionButton.addEventListener("click", autoButtonHendler);
+autoRecordButton.addEventListener("click", autoButtonHendler);
+autoPlayButton.addEventListener("click", autoButtonHendler);
 goMenueCaller.addEventListener("click", goMenueHandler);
+videoPowerButton.addEventListener("click", videoPowerButtonHandler);
+videoRecordButton.addEventListener("clicl", videoRecordButtonHandler);
 
+// functions
 function goHandler(e) {
   e.preventDefault();
   if (!someChecked()) {
     alertMsg.classList.remove("hidden");
   } else {
     startGame();
+  }
+}
+
+function videoRecordButtonHandler() {
+  isRecording = !isRecording;
+  if (isRecording) {
+    // set MIME type of recording as video/webm
+    media_recorder = new MediaRecorder(camera_stream, {
+      mimeType: "video/webm",
+    });
+    // event : new recorded video blob available
+    media_recorder.addEventListener("dataavailable", function (e) {
+      blobs_recorded.push(e.data);
+    });
+    // event : recording stopped & all blobs sent
+    media_recorder.addEventListener("stop", function () {
+      // create local object URL from the recorded video blobs
+      let video_local = URL.createObjectURL(
+        new Blob(blobs_recorded, { type: "video/webm" })
+      );
+      videoDownloadButton.href = video_local;
+      // start recording with each recorded blob
+      media_recorder.start();
+    });
+  } else {
+    media_recorder.stop();
+  }
+}
+
+function videoPowerButtonHandler() {
+  isVideoEnabled = !isVideoEnabled;
+  for (let x of disaebleWebElemets) {
+    x.classList.toggle("disabled");
+  }
+  toggleVideo();
+}
+
+async function toggleVideo() {
+  if (isVideoEnabled) {
+    camera_stream = await navigator.mediaDevices.getUserMedia({
+      video: true,
+      audio: true,
+    });
+    video.srcObject = camera_stream;
+  } else {
+    camera_stream = null;
+    video.srcObject = null;
   }
 }
 
@@ -106,10 +175,22 @@ function prepareQuestions() {
   }
   if (timerCh.checked) {
     isTimerEnabled = true;
-    switchContainer.classList.remove("hidden");
+    switchContainer.classList.remove("disabled");
   } else {
     isTimerEnabled = false;
-    switchContainer.classList.add("hidden");
+    switchContainer.classList.add("disabled");
+  }
+  if (videoCh.checked) {
+    isVideoEnabled = true;
+    for (let x of disaebleWebElemets) {
+      x.classList.remove("disabled");
+    }
+    toggleVideo();
+  } else {
+    isVideoEnabled = false;
+    for (let x of disaebleWebElemets) {
+      x.classList.add("disabled");
+    }
   }
 }
 
@@ -144,7 +225,8 @@ function timerupdater(from) {
         }
       }
     }
-    timerWebElement.innerHTML = "" + minutes + (tick ? ":" : " ") + (seconds < 10 ? "0" : "") + seconds;
+    timerWebElement.innerHTML =
+      "" + minutes + (tick ? ":" : " ") + (seconds < 10 ? "0" : "") + seconds;
     tick = !tick;
   }, 1000);
 }
