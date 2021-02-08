@@ -35,12 +35,14 @@ const videoPauseButton = document.querySelector("#video-pause");
 const videoDownloadButton = document.querySelector("#video-download");
 const videoFullScreenButton = document.querySelector("#video-fullScreen");
 const video = document.querySelector("#video");
+const recordindMessageText = document.querySelector("#record-message");
 // global variables
 let isTimerEnabled = false;
 let isVideoEnabled = false;
 let isRecording = false;
 let isRecordingPaused = false;
-let intervalID = null;
+let timerIntervalID = null;
+let recIntervalID = null;
 let questions = [];
 let question;
 let solution;
@@ -92,8 +94,37 @@ function videoRecordButtonHandler() {
       // start recording with each recorded blob
       media_recorder.start();
     });
+    recordMessage("rec");
   } else {
     media_recorder.stop();
+    recordMessage("stop");
+  }
+}
+
+function recordMessage(status) {
+  switch (status) {
+    case "rec":
+      recordindMessageText.innerHTML = "Rec";
+      recIntervalID = setInterval(() => {
+        recordindMessageText.classList.toggle("hidden");
+      }, 1000);
+      break;
+    case "stop":
+      clearInterval(recIntervalID);
+      recIntervalID = null;
+      break;
+    case "rec-pause":
+      clearInterval(recIntervalID);
+      recIntervalID = null;
+      recordindMessageText.classList.remove("hidden");
+      recordindMessageText.innerHTML = "Rec paused";
+      break;
+    case "rec-resume":
+      recordindMessageText.innerHTML = "Rec";
+      recIntervalID = setInterval(() => {
+        recordindMessageText.classList.toggle("hidden");
+      }, 1000);
+      break;
   }
 }
 
@@ -102,8 +133,10 @@ function videoPauseButtonHandler() {
   if (isRecording) {
     if (isRecordingPaused) {
       media_recorder.pause();
+      recordMessage("rec-pause");
     } else {
       media_recorder.resume();
+      recordMessage("rec-resume");
     }
   } else {
     // add play resume function
@@ -132,9 +165,9 @@ async function toggleVideo() {
 }
 
 function solutionButtonHandler() {
-  if (intervalID) {
-    clearInterval(intervalID);
-    intervalID = null;
+  if (timerIntervalID) {
+    clearInterval(timerIntervalID);
+    timerIntervalID = null;
   }
   timerWebElement.innerHTML = "off";
   if (solution !== "") {
@@ -147,9 +180,9 @@ function solutionButtonHandler() {
 }
 
 function nextButtonHandler() {
-  if (intervalID) {
-    clearInterval(intervalID);
-    intervalID = null;
+  if (timerIntervalID) {
+    clearInterval(timerIntervalID);
+    timerIntervalID = null;
   }
   startSycle();
 }
@@ -219,7 +252,7 @@ function timerupdater(from) {
   let minutes = time - 1;
   let seconds = 60;
   let tick = true;
-  intervalID = setInterval(() => {
+  timerIntervalID = setInterval(() => {
     if (seconds > 0) {
       seconds--;
     } else {
@@ -227,8 +260,8 @@ function timerupdater(from) {
         minutes--;
         seconds = 59;
       } else {
-        clearInterval(intervalID);
-        intervalID = null;
+        clearInterval(timerIntervalID);
+        timerIntervalID = null;
         if (
           from === "from question" &&
           autoSolutionButton.classList.contains("on") &&
@@ -280,9 +313,9 @@ function startGame() {
 }
 
 function goMenueHandler() {
-  clearInterval(intervalID);
+  clearInterval(timerIntervalID);
   isTimerEnabled = false;
-  intervalID = null;
+  timerIntervalID = null;
   questions = [];
   goMenueCaller.classList.add("hidden");
   gsap.to(".menue-container", 1, { y: 0, ease: "elastic.out" });
