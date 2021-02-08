@@ -104,7 +104,7 @@ function videoRecordButtonHandler() {
       video_local = URL.createObjectURL(
         new Blob(blobs_recorded, { type: "video/webm" })
       );
-      videoDownloadButton.setAttribute("href", video_local);
+      videoDownloadButton.href = video_local;
       console.log(videoDownloadButton.getAttribute("href"));
       // start recording with each recorded blob
       media_recorder.start();
