@@ -194,7 +194,7 @@ input {
   width: 50px;
   height: auto;
   margin: auto;
-  pointer-events: all;
+  cursor: pointer;
 }
 #video-switch-container {
   width: 35vw;
@@ -202,10 +202,6 @@ input {
   margin: auto;
   display: flex;
   flex-direction: column;
-}
-#video-on {
-  pointer-events: all !important;
-  opacity: 1 !important;
 }
 .disabled {
   pointer-events: none;

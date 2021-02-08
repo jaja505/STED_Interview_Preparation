@@ -60,8 +60,9 @@ autoRecordButton.addEventListener("click", autoButtonHendler);
 autoPlayButton.addEventListener("click", autoButtonHendler);
 goMenueCaller.addEventListener("click", goMenueHandler);
 videoPowerButton.addEventListener("click", videoPowerButtonHandler);
-videoRecordButton.addEventListener("clicl", videoRecordButtonHandler);
+videoRecordButton.addEventListener("click", videoRecordButtonHandler);
 videoPauseButton.addEventListener("click", videoPauseButtonHandler);
+videoPlayButton.addEventListener("click", videoPlayButtonHandler);
 
 // functions
 function goHandler(e) {
@@ -73,9 +74,16 @@ function goHandler(e) {
   }
 }
 
+function videoPlayButtonHandler() {
+  console.log("Playing video");
+}
+
 function videoRecordButtonHandler() {
+  console.log("record button pressed");
   isRecording = !isRecording;
   if (isRecording) {
+    recordMessage("rec");
+    console.log("recording ...");
     // set MIME type of recording as video/webm
     media_recorder = new MediaRecorder(camera_stream, {
       mimeType: "video/webm",
@@ -94,10 +102,10 @@ function videoRecordButtonHandler() {
       // start recording with each recorded blob
       media_recorder.start();
     });
-    recordMessage("rec");
   } else {
-    media_recorder.stop();
     recordMessage("stop");
+    media_recorder.stop();
+    console.log("stopped recording ...");
   }
 }
 
@@ -112,6 +120,7 @@ function recordMessage(status) {
     case "stop":
       clearInterval(recIntervalID);
       recIntervalID = null;
+      recordindMessageText.classList.add("hidden");
       break;
     case "rec-pause":
       clearInterval(recIntervalID);
@@ -132,11 +141,11 @@ function videoPauseButtonHandler() {
   isRecordingPaused = !isRecordingPaused;
   if (isRecording) {
     if (isRecordingPaused) {
-      media_recorder.pause();
       recordMessage("rec-pause");
+      media_recorder.pause();
     } else {
-      media_recorder.resume();
       recordMessage("rec-resume");
+      media_recorder.resume();
     }
   } else {
     // add play resume function
