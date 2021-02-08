@@ -87,6 +87,8 @@ function videoPlayButtonHandler() {
 function videoRecordButtonHandler() {
   isRecording = !isRecording;
   if (isRecording) {
+    video.src = null;
+    video.srcObject = null;
     video.srcObject = camera_stream;
     recordMessage("rec");
     // set MIME type of recording as video/webm
@@ -103,7 +105,7 @@ function videoRecordButtonHandler() {
       // create local object URL from the recorded video blobs
       video_local = null;
       video_local = URL.createObjectURL(
-        new Blob(blobs_recorded, { type: "video/mp4" })
+        new Blob(blobs_recorded, { type: "video/webm" })
       );
       videoDownloadButton.href = video_local;
       console.log(videoDownloadButton.getAttribute("href"));
