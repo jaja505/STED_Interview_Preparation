@@ -36,6 +36,7 @@ const videoDownloadButton = document.querySelector("#video-download");
 const videoFullScreenButton = document.querySelector("#video-fullScreen");
 const video = document.querySelector("#video");
 const recordindMessageText = document.querySelector("#record-message");
+const videoSwitchContainer = document.querySelector("#video-switch-container");
 // global variables
 let isTimerEnabled = false;
 let isVideoEnabled = false;
@@ -78,30 +79,44 @@ function goHandler(e) {
 
 function videoPlayButtonHandler() {
   if (isRecording) {
-    media_recorder.stop();
-    isRecording = !isRecording;
+    stopRecord();
+    isRecording = false;
   }
   setTimeout(() => {
     video.srcObject = null;
     video.src = video_local;
     video.controls = true;
-    isPlayPaused = false;
-    video.play();
+    video.removeAttribute("muted");
+    if (isPlayPaused) {
+      isPlayPaused = false;
+      video.resume();
+    } else {
+      video.play();
+    }
   }, 300);
 }
 
 function videoRecordButtonHandler() {
-  isRecording = !isRecording;
-  if (isRecording) {
-    video.src = null;
-    video.srcObject = camera_stream;
-    recordMessage("rec");
-    // start recording with each recorded blob
-    media_recorder.start();
+  if (isRecording === false) {
+    startRecord();
   } else {
-    recordMessage("stop");
-    media_recorder.stop();
+    stopRecord();
   }
+}
+
+function startRecord() {
+  isRecording = true;
+  video.src = null;
+  video.srcObject = camera_stream;
+  recordMessage("rec");
+  // start recording with each recorded blob
+  media_recorder.start();
+}
+
+function stopRecord() {
+  isRecording = false;
+  recordMessage("stop");
+  media_recorder.stop();
 }
 
 function recordMessage(status) {
@@ -168,6 +183,7 @@ async function toggleVideo() {
     });
     video.srcObject = camera_stream;
     video.controls = false;
+    video.setAttribute("muted");
     // set MIME type of recording as video/webm
     media_recorder = new MediaRecorder(camera_stream, {
       mimeType: "video/webm;codecs=vp9,opus",
@@ -218,8 +234,16 @@ function autoButtonHendler(e) {
   e.target.classList.toggle("on");
   if (e.target.classList.contains("on")) {
     e.target.src = "../img/switch_on.gif";
+    if (e.target.id === "auto-play") {
+      autoRecordButton.classList.add("on");
+      autoRecordButton.src = "../img/switch_on.gif";
+    }
   } else {
     e.target.src = "../img/switch_off.gif";
+    if (e.target.id === "auto-record") {
+      autoPlayButton.classList.remove("on");
+      autoPlayButton.src = "../img/switch_off.gif";
+    }
   }
 }
 
@@ -279,6 +303,16 @@ function timerupdater(from) {
   let minutes = time - 1;
   let seconds = 60;
   let tick = true;
+  if (from === "from question") {
+    if (
+      isVideoEnabled &&
+      autoRecordButton.classList.contains("on") &&
+      isRecording === false
+    ) {
+      isRecording = true;
+      startRecord();
+    }
+  }
   timerIntervalID = setInterval(() => {
     if (seconds > 0) {
       seconds--;
@@ -289,12 +323,13 @@ function timerupdater(from) {
       } else {
         clearInterval(timerIntervalID);
         timerIntervalID = null;
-        if (
-          from === "from question" &&
-          autoSolutionButton.classList.contains("on") &&
-          solution !== ""
-        ) {
-          shwoSolution();
+        if (from === "from question") {
+          if (isVideoEnabled && autoRecordButton.classList.contains("on")) {
+            videoPlayButtonHandler();
+          }
+          if (autoSolutionButton.classList.contains("on") && solution !== "") {
+            shwoSolution();
+          }
         } else if (autoNextButton.classList.contains("on")) {
           startSycle();
         }
