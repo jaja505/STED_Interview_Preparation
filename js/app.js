@@ -81,12 +81,12 @@ function videoPlayButtonHandler() {
   if (isRecording) {
     stopRecord();
     isRecording = false;
-  }
-  setTimeout(() => {
     video.srcObject = null;
     video.src = video_local;
+    video.muted(false);
+  }
+  setTimeout(() => {
     video.controls = true;
-    video.removeAttribute("muted");
     if (isPlayPaused) {
       isPlayPaused = false;
       video.resume();
@@ -108,6 +108,7 @@ function startRecord() {
   isRecording = true;
   video.src = null;
   video.srcObject = camera_stream;
+  video.muted(true);
   recordMessage("rec");
   // start recording with each recorded blob
   media_recorder.start();
@@ -183,7 +184,6 @@ async function toggleVideo() {
     });
     video.srcObject = camera_stream;
     video.controls = false;
-    video.setAttribute("muted");
     // set MIME type of recording as video/webm
     media_recorder = new MediaRecorder(camera_stream, {
       mimeType: "video/webm;codecs=vp9,opus",
