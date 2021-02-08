@@ -77,39 +77,25 @@ function goHandler(e) {
 }
 
 function videoPlayButtonHandler() {
-  video.src = null;
-  video.srcObject = null;
-  video.src = video_local;
-  video.controls = true;
-  video.play();
+  if (isRecording) {
+    media_recorder.stop();
+    isRecording = !isRecording;
+  }
+  setTimeout(() => {
+    video.srcObject = null;
+    video.src = video_local;
+    video.controls = true;
+    isPlayPaused = false;
+    video.play();
+  }, 300);
 }
 
 function videoRecordButtonHandler() {
   isRecording = !isRecording;
   if (isRecording) {
     video.src = null;
-    video.srcObject = null;
     video.srcObject = camera_stream;
     recordMessage("rec");
-    // set MIME type of recording as video/webm
-    media_recorder = new MediaRecorder(camera_stream, {
-      mimeType: "video/webm;codecs=vp9,opus",
-    });
-    // event : new recorded video blob available
-    blobs_recorded = [];
-    media_recorder.addEventListener("dataavailable", function (e) {
-      blobs_recorded.push(e.data);
-    });
-    // event : recording stopped & all blobs sent
-    media_recorder.addEventListener("stop", function () {
-      // create local object URL from the recorded video blobs
-      video_local = null;
-      video_local = URL.createObjectURL(
-        new Blob(blobs_recorded, { type: "video/webm" })
-      );
-      videoDownloadButton.href = video_local;
-      console.log(videoDownloadButton.getAttribute("href"));
-    });
     // start recording with each recorded blob
     media_recorder.start();
   } else {
@@ -181,6 +167,24 @@ async function toggleVideo() {
       audio: true,
     });
     video.srcObject = camera_stream;
+    video.controls = false;
+    // set MIME type of recording as video/webm
+    media_recorder = new MediaRecorder(camera_stream, {
+      mimeType: "video/webm;codecs=vp9,opus",
+    });
+    // event : new recorded video blob available
+    media_recorder.addEventListener("dataavailable", function (e) {
+      blobs_recorded.push(e.data);
+    });
+    // event : recording stopped & all blobs sent
+    media_recorder.addEventListener("stop", function () {
+      // create local object URL from the recorded video blobs
+      video_local = null;
+      video_local = URL.createObjectURL(
+        new Blob(blobs_recorded, { type: "video/webm" })
+      );
+      videoDownloadButton.href = video_local;
+    });
   } else {
     camera_stream = null;
     video.srcObject = null;
