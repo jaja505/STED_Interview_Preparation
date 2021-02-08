@@ -80,10 +80,10 @@ function goHandler(e) {
 function videoPlayButtonHandler() {
   if (isRecording) {
     stopRecord();
-    video.srcObject = null;
-    video.src = video_local;
-    video.muted = false;
   }
+  video.srcObject = null;
+  video.src = video_local;
+  video.muted = false;
   setTimeout(() => {
     video.controls = true;
     if (isPlayPaused) {
@@ -104,6 +104,7 @@ function videoRecordButtonHandler() {
 }
 
 function startRecord() {
+  blobs_recorded = [];
   isRecording = true;
   video.src = null;
   video.srcObject = camera_stream;
