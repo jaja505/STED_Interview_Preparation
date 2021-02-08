@@ -177,10 +177,7 @@ function videoPowerButtonHandler() {
 async function toggleVideo() {
   if (isVideoEnabled) {
     camera_stream = await navigator.mediaDevices.getUserMedia({
-      video: {
-        width: 1280,
-        height: 720,
-      },
+      video: true,
       audio: {
         echoCancellation: { exact: hasEchoCancellation },
       },

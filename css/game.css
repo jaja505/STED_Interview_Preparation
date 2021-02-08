@@ -163,8 +163,8 @@ input {
 }
 #record-message {
   position: absolute;
-  top: 10px;
-  left: 10px;
+  top: 3vh;
+  left: 5vw;
   color: red;
   font-family: Poppins;
   font-size: small;
