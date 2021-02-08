@@ -87,6 +87,7 @@ function videoPlayButtonHandler() {
 function videoRecordButtonHandler() {
   isRecording = !isRecording;
   if (isRecording) {
+    video.srcObject = camera_stream;
     recordMessage("rec");
     // set MIME type of recording as video/webm
     media_recorder = new MediaRecorder(camera_stream, {
