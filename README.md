@@ -14,5 +14,5 @@ Please feel free to leave your comments, questions, concerns in discussion secti
 
 The idea of this game belogs to Stephanie.
 In collaboration with Daniel, Livio and Daria we created Java + Selenium based application. 
-Please check out our repository "here" *link will be here after we present their project in student-mentoring session at 2/8/21 9:00 pm est.* 
+Please check out our repository "here" *link will be here after we present our project in student-mentoring session at 2/8/21 9:00 pm est.* 
 In collaboration with all of us and Sobirdzhon now we work in creating web based version of the application.
