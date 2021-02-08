@@ -134,9 +134,12 @@
           </div>
         </div>
         <div id="video-container">
-          <video id="video" <!-- poster="../img/persone.gif" -->
-            class="disayeble" autoplay >
-          </video>
+          <video
+            id="video"
+            poster="../img/persone.gif"
+            class="disayeble"
+            autoplay
+          ></video>
           <div id="video-controll-container">
             <div id="video-buttons">
               <img src="../img/Power.png" class="video-button" id="video-on" />
@@ -155,12 +158,13 @@
                 class="video-button disayeble"
                 id="video-pause"
               />
-              <img
-                src="../img/Download.png"
-                class="video-button disayeble"
+              <a
                 id="video-download"
                 download="test.webm"
-              />
+                class="video-button disayeble"
+              >
+                <img src="../img/Download.png" class="video-button" />
+              </a>
               <img
                 src="../img/fullScreen.png"
                 class="video-button disayeble"
