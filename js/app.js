@@ -106,9 +106,9 @@ function videoRecordButtonHandler() {
       );
       videoDownloadButton.href = video_local;
       console.log(videoDownloadButton.getAttribute("href"));
-      // start recording with each recorded blob
-      media_recorder.start();
     });
+    // start recording with each recorded blob
+    media_recorder.start();
   } else {
     recordMessage("stop");
     media_recorder.stop();
