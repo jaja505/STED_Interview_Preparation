@@ -178,9 +178,7 @@ async function toggleVideo() {
   if (isVideoEnabled) {
     camera_stream = await navigator.mediaDevices.getUserMedia({
       video: true,
-      audio: {
-        echoCancellation: { exact: hasEchoCancellation },
-      },
+      audio: true,
     });
     video.srcObject = camera_stream;
   } else {
