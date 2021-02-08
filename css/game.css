@@ -196,6 +196,12 @@ input {
   margin: auto;
   cursor: pointer;
 }
+#video-download-icon {
+  width: 50px;
+  height: auto;
+  margin: auto;
+  pointer-events: none;
+}
 #video-switch-container {
   width: 35vw;
   height: 8vh;
