@@ -39,6 +39,7 @@ const video = document.querySelector("#video");
 let isTimerEnabled = false;
 let isVideoEnabled = false;
 let isRecording = false;
+let isRecordingPaused = false;
 let intervalID = null;
 let questions = [];
 let question;
@@ -58,6 +59,7 @@ autoPlayButton.addEventListener("click", autoButtonHendler);
 goMenueCaller.addEventListener("click", goMenueHandler);
 videoPowerButton.addEventListener("click", videoPowerButtonHandler);
 videoRecordButton.addEventListener("clicl", videoRecordButtonHandler);
+videoPauseButton.addEventListener("click", videoPauseButtonHandler);
 
 // functions
 function goHandler(e) {
@@ -86,12 +88,25 @@ function videoRecordButtonHandler() {
       let video_local = URL.createObjectURL(
         new Blob(blobs_recorded, { type: "video/webm" })
       );
-      videoDownloadButton.href = video_local;
+      videoDownloadButton.setAttribute("href", video_local);
       // start recording with each recorded blob
       media_recorder.start();
     });
   } else {
     media_recorder.stop();
+  }
+}
+
+function videoPauseButtonHandler() {
+  isRecordingPaused = !isRecordingPaused;
+  if (isRecording) {
+    if (isRecordingPaused) {
+      media_recorder.pause();
+    } else {
+      media_recorder.resume();
+    }
+  } else {
+    // add play resume function
   }
 }
 
@@ -107,7 +122,7 @@ async function toggleVideo() {
   if (isVideoEnabled) {
     camera_stream = await navigator.mediaDevices.getUserMedia({
       video: true,
-      audio: true,
+      audio: false,
     });
     video.srcObject = camera_stream;
   } else {
