@@ -41,6 +41,7 @@ let isTimerEnabled = false;
 let isVideoEnabled = false;
 let isRecording = false;
 let isRecordingPaused = false;
+let isPlayPaused = false;
 let timerIntervalID = null;
 let recIntervalID = null;
 let questions = [];
@@ -50,6 +51,7 @@ let time;
 let camera_stream = null;
 let media_recorder = null;
 let blobs_recorded = [];
+let video_local = null;
 // event listeners
 goBt.addEventListener("click", goHandler);
 solutionButton.addEventListener("click", solutionButtonHandler);
@@ -75,37 +77,41 @@ function goHandler(e) {
 }
 
 function videoPlayButtonHandler() {
-  console.log("Playing video");
+  video.src = null;
+  video.srcObject = null;
+  video.src = video_local;
+  video.controls = true;
+  video.play();
 }
 
 function videoRecordButtonHandler() {
-  console.log("record button pressed");
   isRecording = !isRecording;
   if (isRecording) {
     recordMessage("rec");
-    console.log("recording ...");
     // set MIME type of recording as video/webm
     media_recorder = new MediaRecorder(camera_stream, {
       mimeType: "video/webm",
     });
     // event : new recorded video blob available
+    blobs_recorded = [];
     media_recorder.addEventListener("dataavailable", function (e) {
       blobs_recorded.push(e.data);
     });
     // event : recording stopped & all blobs sent
     media_recorder.addEventListener("stop", function () {
       // create local object URL from the recorded video blobs
-      let video_local = URL.createObjectURL(
+      video_local = null;
+      video_local = URL.createObjectURL(
         new Blob(blobs_recorded, { type: "video/webm" })
       );
       videoDownloadButton.setAttribute("href", video_local);
+      console.log(videoDownloadButton.getAttribute("href"));
       // start recording with each recorded blob
       media_recorder.start();
     });
   } else {
     recordMessage("stop");
     media_recorder.stop();
-    console.log("stopped recording ...");
   }
 }
 
@@ -148,7 +154,12 @@ function videoPauseButtonHandler() {
       media_recorder.resume();
     }
   } else {
-    // add play resume function
+    isPlayPaused = !isPlayPaused;
+    if (isPlayPaused) {
+      video.pause();
+    } else {
+      video.resume();
+    }
   }
 }
 
