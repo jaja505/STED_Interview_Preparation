@@ -185,6 +185,7 @@ async function toggleVideo() {
     });
     video.srcObject = camera_stream;
     video.controls = false;
+    video.muted = true;
     // set MIME type of recording as video/webm
     media_recorder = new MediaRecorder(camera_stream, {
       mimeType: "video/webm;codecs=vp9,opus",
@@ -205,6 +206,7 @@ async function toggleVideo() {
   } else {
     camera_stream = null;
     video.srcObject = null;
+    video.src = null;
   }
 }
 
