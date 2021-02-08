@@ -206,7 +206,8 @@ async function toggleVideo() {
   } else {
     camera_stream = null;
     video.srcObject = null;
-    video.src = null;
+    video.removeAttribute("src");
+    video.removeAttribute("controls");
   }
 }
 
