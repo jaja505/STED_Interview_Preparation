@@ -90,7 +90,7 @@ function videoRecordButtonHandler() {
     recordMessage("rec");
     // set MIME type of recording as video/webm
     media_recorder = new MediaRecorder(camera_stream, {
-      mimeType: "video/webm",
+      mimeType: "video/webm;codecs=vp9,opus",
     });
     // event : new recorded video blob available
     blobs_recorded = [];
@@ -102,7 +102,7 @@ function videoRecordButtonHandler() {
       // create local object URL from the recorded video blobs
       video_local = null;
       video_local = URL.createObjectURL(
-        new Blob(blobs_recorded, { type: "video/webm" })
+        new Blob(blobs_recorded, { type: "video/mp4" })
       );
       videoDownloadButton.href = video_local;
       console.log(videoDownloadButton.getAttribute("href"));
@@ -174,8 +174,13 @@ function videoPowerButtonHandler() {
 async function toggleVideo() {
   if (isVideoEnabled) {
     camera_stream = await navigator.mediaDevices.getUserMedia({
-      video: true,
-      audio: false,
+      video: {
+        width: 1280,
+        height: 720,
+      },
+      audio: {
+        echoCancellation: { exact: hasEchoCancellation },
+      },
     });
     video.srcObject = camera_stream;
   } else {
