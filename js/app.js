@@ -96,7 +96,7 @@ function videoPlayButtonHandler() {
         alert("No videos recorded yet!");
       }
     }
-  }, 1000);
+  }, 2000);
 }
 
 function videoRecordButtonHandler() {
