@@ -92,7 +92,7 @@ function videoPlayButtonHandler() {
     } else {
       video.play();
     }
-  }, 300);
+  }, 1000);
 }
 
 function videoRecordButtonHandler() {
