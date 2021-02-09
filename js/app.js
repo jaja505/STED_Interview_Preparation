@@ -81,10 +81,10 @@ function videoPlayButtonHandler() {
   if (isRecording) {
     stopRecord();
   }
+  setTimeout(() => {
   video.srcObject = null;
   video.src = video_local;
   video.muted = false;
-  setTimeout(() => {
     video.controls = true;
     if (isPlayPaused) {
       isPlayPaused = false;
@@ -96,7 +96,7 @@ function videoPlayButtonHandler() {
         alert("No videos recorded yet!");
       }
     }
-  }, 2000);
+  }, 300);
 }
 
 function videoRecordButtonHandler() {
