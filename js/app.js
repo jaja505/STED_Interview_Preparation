@@ -90,7 +90,11 @@ function videoPlayButtonHandler() {
       isPlayPaused = false;
       video.resume();
     } else {
-      video.play();
+      if (video_local !== null) {
+        video.play();
+      } else {
+        alert("No videos recorded yet!");
+      }
     }
   }, 1000);
 }
@@ -208,6 +212,7 @@ async function toggleVideo() {
     video.srcObject = null;
     video.removeAttribute("src");
     video.removeAttribute("controls");
+    video_local = null;
   }
 }
 
