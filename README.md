@@ -12,7 +12,7 @@ If you follow along you will see how new modules will be added. Please check out
 I'm using Agile Kanban methodology in this project, so I'm open to your precious feedback regarding existing or future functionalities.
 Please feel free to leave your comments, questions, concerns in Discussion section of this repository. I will respond to your ASAP.
 
-The idea and creation belongs to Steph G. and Daniel V. In collaborative help from Dasha, Liv and Tayfun they created Java + Selenium based application "TheInterviewNinjaGame". 
+The idea and creation belongs to Steph G. and Daniel V. In collaborative help from Dasha, Liv and Tayfun they created Java + Selenium based application "The_Interview_Ninja_Game". 
 Please check out their repository [here](https://github.com/sgalvezc/TheInterviewNinjaGame). 
 They are planning to create a web based or desctop based application later. I'm so excited to join them and collaborate. Wish us good luck! lol
 
