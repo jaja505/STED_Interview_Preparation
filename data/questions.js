@@ -953,7 +953,8 @@ const API = [
 
 
 ];
-const BEHAVIORAL = [{
+const BEHAVIORAL = [
+    {
     q: "Tell me about yourself?",
     s: "",
     t: 5,
@@ -999,25 +1000,25 @@ const BEHAVIORAL = [{
         "professional Mobile Developer.\n" +
         "• I want to be technically very competitive person 5 years from now.",
     t: 2,
-}{
+},{
     q: "What is your weakness?",
     s: "Well, I think my weakness is that whenever I am given some responsibilities and there is a deadline for it, I work day and\n" +
         "night, sometimes 7 days a week. This is bad for my family life; the reality is I cannot sleep unless I am done with my\n" +
         "assignments.",
     t: 2,
-}{
+},{
     q: "",
     s: "",
     t: 2,
-}{
+},{
     q: "",
     s: "",
     t: 2,
-}{
+},{
     q: "",
     s: "",
     t: 2,
-}{
+},{
     q: "",
     s: "",
     t: 2,

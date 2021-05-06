@@ -286,7 +286,7 @@ function prepareQuestions() {
     questions.push(...API);
   }
   if (behavCh.checked) {
-    questions.push(...);
+    questions.push(...BEHAVIORAL);
   }
   if (timerCh.checked) {
     isTimerEnabled = true;
