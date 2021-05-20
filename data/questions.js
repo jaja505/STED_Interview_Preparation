@@ -19,7 +19,10 @@ const JAVA = [
     },
     {
         q: "What are the differences between Arrays and ArrayList in Java?",
-        s: "",
+        s: "• Major difference is that; Array is a fixed length data structure, so we can change length of Array one created, ArrayList is\n" +
+            "resizable.\n" +
+            "• The other major one is that Array can contain both primitives and objects. ArrayList can only contain objects. It cannot\n" +
+            "contain primitive types.",
         t: 2,
     },
     {
@@ -1023,5 +1026,342 @@ const BEHAVIORAL = [
     s: "",
     t: 2,
 }
+];
+const INTERVIEW = [
+    {
+        q: "Tell me about yourself?",
+        s: "",
+        t: 5,
+    },
+    {
+        q: "Implicit Wait vs Explicit Wait?",
+        s: "",
+        t: 2,
+    },
+    {
+        q: "What are various ways of locating an element in Selenium?",
+        s: "",
+        t: 2,
+    },
+    {
+        q: "How to highlight an element?",
+        s: "",
+        t: 2,
+    },
+    {
+        q: "Absolute and Relative Xpath?",
+        s: "",
+        t: 2,
+    },
+    {
+        q: "How to test dynamic web page?",
+        s: "",
+        t: 2,
+    },
+    {
+        q: "Difference between close() and quit() webdriver commands?",
+        s: "",
+        t: 2,
+    },
+    {
+        q: "Difference between xpath and css selector?",
+        s: "",
+        t: 2,
+    },
+    {
+        q: "How to maximize a webpage?",
+        s: "",
+        t: 2,
+    },
+    {
+        q: "What is Thread.sleep()?",
+        s: "",
+        t: 2,
+    },
+    {
+        q: "Difference between method Overloading and method Overriding",
+        s: "",
+        t: 2,
+    },
+    {
+        q: "Difference between Set, List and Map in Java",
+        s: "",
+        t: 2,
+    },
+    {
+        q: "What is Array? Array's pros and cons",
+        s: "",
+        t: 2,
+    },
+    {
+        q: "What does 'immutable class' means? What classes are immutable in Java?",
+        s: "",
+        t: 2,
+    },
+    {
+        q: "Difference between StringBuffer and String Builder",
+        s: "",
+        t: 2,
+    },
+    {
+        q: "Difference between an Exception and Error in JAVA",
+        s: "",
+        t: 2,
+    },
+    {
+        q: "Differences between HashMap and HashTable",
+        s: "",
+        t: 2,
+    },
+    {
+        q: "What is pom.xml",
+        s: "",
+        t: 2,
+    },
+    {
+        q: "what is m2 directory",
+        s: "",
+        t: 2,
+    },
+    {
+        q: "explain the soft assert and hard assert",
+        s: "",
+        t: 2,
+    },
+    {
+        q: "what is your contribution on release time",
+        s: "",
+        t: 2,
+    },
+    {
+        q: "video volume control program ",
+        s: "",
+        t: 2,
+    },
+    {
+        q: "explain OOPs concepts",
+        s: "",
+        t: 2,
+    },
+    {
+        q: "explain the exception concept in Java",
+        s: "",
+        t: 2,
+    },
+    {
+        q: " explain lambda in java",
+        s: "",
+        t: 2,
+    },
+    {
+        q: "git process flow",
+        s: "",
+        t: 2,
+    },
+    {
+        q: "explain about client server testing experience",
+        s: "",
+        t: 2,
+    },
+    {
+        q: "explain about the testing documentation process",
+        s: "",
+        t: 2,
+    },
+    {
+        q: "Customer is always right, what do you think about this?",
+        s: "",
+        t: 2,
+    },
+    {
+        q: "What would your manager say about you?",
+        s: "",
+        t: 2,
+    },
+    {
+        q: "Given an Array print out the duplicates?",
+        s: "",
+        t: 2,
+    },
+    {
+        q: "Access modifier in Java",
+        s: "",
+        t: 2,
+    },
+    {
+        q: "Tell me the query for display all data in this table?",
+        s: "",
+        t: 2,
+    },
+    {
+        q: "Inner join outer join?",
+        s: "",
+        t: 2,
+    },
+    {
+        q: "How do you open the browser in Selenium? Code?",
+        s: "",
+        t: 2,
+    },
+    {
+        q: "If your driver could not get the web page to open, what could be the reason, and how would you address it?",
+        s: "",
+        t: 2,
+    },
+    {
+        q: "What exceptions have you had in Selenium (not Java), and how did you handle them?",
+        s: "",
+        t: 2,
+    },
+    {
+        q: "What is the difference between Abstract class and Interface?\n",
+        s: "",
+        t: 2,
+    },
+    {
+        q: "If the browser version is changed and your test is failing, how would you fix it? Which particular file would you have to configure to make your code work?",
+        s: "",
+        t: 2,
+    },
+    {
+        q: "What is POJO, and what do you use it for? What does the POJO class contain?",
+        s: "",
+        t: 2,
+    },
+    {
+        q: "When would you use Agile, and when would you use Waterfall methodologies?",
+        s: "",
+        t: 2,
+    },
+    {
+        q: "Where would you like to be in your career five years from now?",
+        s: "",
+        t: 2,
+    },
+    {
+        q: "How do you keep yourself up to date with tools and technology in your field?",
+        s: "",
+        t: 2,
+    },
+    {
+        q: "Tell me about a time when your team didn’t meet a deadline; what was the reason, and how did you handle it?",
+        s: "",
+        t: 2,
+    },
+    {
+        q: "Tell me about how you manage the time difference when working with offshore teams",
+        s: "",
+        t: 2,
+    },
+    {
+        q: "Do you play any role in hiring new members for your team?",
+        s: "",
+        t: 2,
+    },
+    {
+        q: "If someone in your team was underperforming, how would you address it?",
+        s: "",
+        t: 2,
+    },
+    {
+        q: "How did you transition from manual testing to automation?",
+        s: "",
+        t: 2,
+    },
+    {
+        q: "How would you decide whether to test a feature manually or automate?",
+        s: "",
+        t: 2,
+    },
+    {
+        q: "What is your understanding of “Testing to break”?",
+        s: "",
+        t: 2,
+    },
+    {
+        q: "Can you tell me the steps for connecting to the database?",
+        s: "",
+        t: 2,
+    },
+    {
+        q: "How many test cases have you written in your  project?",
+        s: "",
+        t: 2,
+    },
+    {
+        q: "They shared a link with me, it had 5 buttons. When you click on each button, it lights up and turns blue and goes off again. They asked: How would you write a logic to click on all five web elements?",
+        s: "",
+        t: 2,
+    },
+    {
+        q: "Tell me about Selenium WebDriver. What is it and how do you use it?",
+        s: "",
+        t: 2,
+    },
+    {
+        q: "Have you built a framework from scratch? Can you tell me about your framework?",
+        s: "",
+        t: 2,
+    },
+    {
+        q: "What is the difference between Path parameter and Query Parameter?",
+        s: "",
+        t: 2,
+    },
+    {
+        q: "Why do we try to avoid using Thread.Sleep?",
+        s: "",
+        t: 2,
+    },
+    {
+        q: "How do you interact with a dropdown?",
+        s: "",
+        t: 2,
+    },
+    {
+        q: "How do you handle pop-ups?",
+        s: "",
+        t: 2,
+    },
+    {
+        q: "If you click a link/button and it opens a new window, how do you switch between these windows?",
+        s: "",
+        t: 2,
+    },
+    {
+        q: "What is a Stale Element Exception? And how to you handle",
+        s: "",
+        t: 2,
+    },
+    {
+        q: "Data provider annotation? Data Driven?",
+        s: "",
+        t: 2,
+    },
+    {
+        q: "TestNG annotation",
+        s: "",
+        t: 2,
+    },
+    {
+        q: "What kind of API have you worked with?",
+        s: "",
+        t: 2,
+    },
+    {
+        q: "Status Code 206? ",
+        s: "",
+        t: 2,
+    },
+    {
+        q: "What interfaces do you use in Selenium?",
+        s: "",
+        t: 2,
+    },
+    {
+        q: "What is the difference between Method Overloading, and Method Overriding?",
+        s: "",
+        t: 2,
+    },
 ]
 

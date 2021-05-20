@@ -7,6 +7,7 @@ const gitCh = document.querySelector("#github");
 const behavCh = document.querySelector("#behavioral");
 const jiraCh = document.querySelector("#jira");
 const APICh = document.querySelector("#API");
+const interviewCh = document.querySelector("#interview-question");
 const timerCh = document.querySelector("#timer");
 const videoCh = document.querySelector("#videoCh");
 const goBt = document.querySelector("#go");
@@ -258,7 +259,7 @@ function autoButtonHendler(e) {
 }
 
 function someChecked() {
-  for (let x of [javaCh, javaTeckCh, selenCh, gitCh, behavCh, jiraCh,APICh]) {
+  for (let x of [javaCh, javaTeckCh, selenCh, gitCh, behavCh, jiraCh,APICh,interviewCh]) {
     if (x.checked) {
       return true;
     }
@@ -287,6 +288,9 @@ function prepareQuestions() {
   }
   if (behavCh.checked) {
     questions.push(...BEHAVIORAL);
+  }
+  if (interviewCh.checked) {
+    questions.push(...INTERVIEW);
   }
   if (timerCh.checked) {
     isTimerEnabled = true;
